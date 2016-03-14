@@ -1,0 +1,59 @@
+﻿@model StudentsCol.Models.User
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@if(TempData["Message"]!=null)
+                    {
+					<div class="alert alert-info">
+						@TempData["Message"].ToString()
+					</div>
+                    }
+<form class="form-horizontal" action="@Url.Content("/Users/Edit")" method="post">
+    <input type="hidden" value="@Model.UserID" name="UserID" />
+						  <fieldset>
+							<legend>Create User</legend>
+							<div class="control-group">
+							  <label class="control-label" for="typeahead">Username </label>
+							  <div class="controls">
+								<input type="text" class="span6 typeahead" id="typeahead" name="username" value="@Model.Username" readonly="true"  data-provide="typeahead" data-items="4" >
+								<p class="help-block">Enter a unique username!</p>
+							  </div>
+							</div>
+							<div class="control-group">
+							  <label class="control-label" for="date01">Password</label>
+							  <div class="controls">
+								<input type="password" class="input-xlarge" id="date01" value="@Model.Password" name="password">
+							  </div>
+							</div>
+
+							<div class="control-group">
+							  <label class="control-label" for="fileInput">Confirm Passwor</label>
+							  <div class="controls">
+								<input class="input-file uniform_on" id="fileInput" value="@Model.Password" type="password" name="confirm">
+							  </div>
+							</div>          
+							<div class="control-group">
+							  <label class="control-label" for="textarea2">Email</label>
+							  <div class="controls">
+								<input type="email" name="email" class="input-xlarge" value="@Model.Email" />
+							  </div>
+							</div>
+                              <div class="control-group">
+							  <label class="control-label" for="textarea2">Active</label>
+							  <div class="controls">
+                                 @Html.CheckBoxFor(x=>x.IsActive)
+							  </div>
+							</div>
+							<div class="form-actions">
+							  <button type="submit" class="btn btn-primary">Save changes</button>
+							  <button type="reset" class="btn">Cancel</button>
+							</div>
+						  </fieldset>
+						</form> 
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
